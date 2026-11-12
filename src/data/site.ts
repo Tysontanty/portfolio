@@ -1,3 +1,25 @@
+export type ProjectSlide = {
+  src: string;
+  alt: string;
+};
+
+export type Project = {
+  year: string;
+  title: string;
+  paragraphs: string[];
+  tags: string[];
+  roles: string[];
+  href: string;
+  linkLabel: string;
+  thumbFit?: "contain" | "cover";
+  slides?: ProjectSlide[];
+  videoThumb?: {
+    src: string;
+    poster: string;
+  };
+  trailer?: string;
+};
+
 export const site = {
   name: "Tyson",
   fullName: "Tyson Tan Teck Yang",
@@ -237,7 +259,7 @@ export const site = {
         },
       ],
     },
-  ],
+  ] as Project[],
   contact: {
     intro: "Contact me using the form below, or hit me up via email at",
     formspree: "https://formspree.io/f/mdeeqgzd",

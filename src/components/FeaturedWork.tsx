@@ -2,9 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProjectSlideshow } from "@/components/ProjectSlideshow";
 import { VideoLoopThumb } from "@/components/VideoLoopThumb";
-import { site } from "@/data/site";
-
-type Project = (typeof site.projects)[number];
+import { site, type Project } from "@/data/site";
 
 const coverThumbs = new Set([
   "Nano Micro Small cover illustration",
@@ -55,15 +53,11 @@ function FeaturedTile({
   const href = project.href ?? "/work";
   const external = href.startsWith("http");
   const label = project.title.replace(" cover illustration", "");
-  const cover = coverThumbs.has(project.title)
-    ? "slides" in project
-      ? project.slides[0]
-      : undefined
-    : undefined;
+  const cover = coverThumbs.has(project.title) ? project.slides?.[0] : undefined;
 
   const media = (
     <>
-      {"videoThumb" in project && project.videoThumb ? (
+      {project.videoThumb ? (
         <VideoLoopThumb
           src={project.videoThumb.src}
           poster={project.videoThumb.poster}
@@ -77,7 +71,7 @@ function FeaturedTile({
           className="object-contain"
           sizes="(max-width: 640px) 100vw, 50vw"
         />
-      ) : "slides" in project && project.slides ? (
+      ) : project.slides ? (
         <ProjectSlideshow
           slides={project.slides}
           className="absolute inset-0 h-full w-full bg-[#0b0d16]"
@@ -107,7 +101,7 @@ function FeaturedTile({
       </div>
       <div className="mt-2.5 min-h-[2.75rem]">
         <p className="text-sm text-[var(--ink)]">{label}</p>
-        {"year" in project && project.year ? (
+        {project.year ? (
           <p className="text-xs text-[var(--muted)]">{project.year}</p>
         ) : null}
       </div>

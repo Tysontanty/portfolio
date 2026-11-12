@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ProjectSlideshow } from "@/components/ProjectSlideshow";
 import { VideoLoopThumb } from "@/components/VideoLoopThumb";
@@ -17,25 +16,15 @@ export function Projects() {
               key={project.title}
               className="overflow-hidden rounded-[2px] border border-[var(--line)] bg-[#0b0d16] sm:grid sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)]"
             >
-              {"videoThumb" in project && project.videoThumb ? (
+              {project.videoThumb ? (
                 <div className="relative min-h-52 bg-[#0b0d16] sm:min-h-full">
                   <VideoLoopThumb
                     src={project.videoThumb.src}
                     poster={project.videoThumb.poster}
                   />
                 </div>
-              ) : "slides" in project && project.slides ? (
+              ) : project.slides ? (
                 <ProjectSlideshow slides={project.slides} />
-              ) : "cover" in project && project.cover ? (
-                <div className="relative aspect-[2.35/1] bg-[#0b0d16]">
-                  <Image
-                    src={project.cover}
-                    alt={project.coverAlt ?? project.title}
-                    fill
-                    className="object-contain p-4 sm:p-6"
-                    sizes="(max-width: 1024px) 100vw, 64rem"
-                  />
-                </div>
               ) : (
                 <div
                   className={`min-h-52 bg-[#0b0d16] sm:min-h-full ${
@@ -51,7 +40,7 @@ export function Projects() {
                 />
               )}
               <div className="p-6 sm:p-8">
-                {"year" in project && project.year ? (
+                {project.year ? (
                   <p className="text-xs tracking-wide text-[var(--muted)]">{project.year}</p>
                 ) : null}
                 <h3 className="mt-2 text-2xl font-medium tracking-tight text-[var(--ink)] sm:text-3xl">
