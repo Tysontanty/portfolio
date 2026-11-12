@@ -17,9 +17,10 @@ export const metadata: Metadata = {
     "Tyson Tan makes worlds and pictures — with 2D/3D graphics, motion, and UI/UX in the mix.",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
+      { url: "/twin.ico", type: "image/x-icon", sizes: "any" },
       { url: "/icon.svg", type: "image/svg+xml" },
     ],
+    shortcut: "/twin.ico",
   },
 };
 
