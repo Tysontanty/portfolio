@@ -15,6 +15,12 @@ export const metadata: Metadata = {
   title: `${site.name} — ${site.role}`,
   description:
     "Tyson Tan makes worlds and pictures — with 2D/3D graphics, motion, and UI/UX in the mix.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
